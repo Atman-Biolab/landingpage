@@ -588,7 +588,29 @@ h1         { animation-delay:.2s; }
 }
 
 
-/* ─── SELETOR BASE NOTE ─── */
+/* ─── ORDER FORM ─── */
+.kit-footer { flex-direction: column; gap: 1.6rem; }
+.kf-summary { display: flex; flex-direction: column; gap: .3rem; }
+.order-form { background: rgba(180,190,175,.04); border: 1px solid var(--border-md); border-radius: 10px; padding: 1.4rem; }
+.order-form-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-lo); margin: 0 0 1.1rem; }
+.order-fields { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin-bottom: 1rem; }
+.of-field { display: flex; flex-direction: column; gap: .35rem; }
+.of-field--full { grid-column: 1 / -1; }
+.of-label { font-size: .52rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-lo); }
+.of-input {
+  background: var(--bg-deep); border: 1px solid var(--border-md); border-radius: 6px;
+  color: var(--text-hi); font-family: var(--sans); font-size: .72rem; padding: .55rem .7rem;
+  outline: none; transition: border-color .2s;
+}
+.of-input::placeholder { color: var(--text-xlo); }
+.of-input:focus { border-color: rgba(34,197,94,.45); }
+.of-aroma-confirm { font-size: .62rem; color: var(--text-lo); margin: 0 0 1rem; }
+.of-aroma-confirm strong { color: var(--text-md); }
+.of-submit { width: 100%; justify-content: center; }
+.of-note { font-size: .54rem; color: var(--text-xlo); text-align: center; margin: .7rem 0 0; letter-spacing: .04em; }
+@media (max-width: 480px) { .order-fields { grid-template-columns: 1fr; } }
+
+
 .selector-base-note {
   font-size: .58rem; font-weight: 400; letter-spacing: .14em; text-transform: uppercase;
   color: var(--text-xlo); margin-top: -.2rem; padding-top: .8rem;
@@ -796,15 +818,40 @@ h1         { animation-delay:.2s; }
       </div>
     </div>
     <div class="kit-footer">
-      <div>
+      <div class="kf-summary">
         <div class="kf-label">Kit completo · 4 produtos</div>
         <div class="kf-price">R$91</div>
         <div class="kf-note">✦ Frete incluso para São Paulo · Pix ou transferência</div>
       </div>
-      <a id="whatsapp-btn" href="https://wa.me/5511964244456?text=Olá!%20Quero%20o%20Kit%20Atman%20Biolab%20com%20desodorante%20de%20Ylang-Ylang%20por%20R%2491%20🌿" class="btn-main" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Pedir via WhatsApp — R$91
-      </a>
+      <!-- ORDER FORM -->
+      <div class="order-form" id="order-form">
+        <p class="order-form-title">Finalizar pedido</p>
+        <div class="order-fields">
+          <div class="of-field">
+            <label class="of-label" for="of-nome">Nome</label>
+            <input class="of-input" id="of-nome" type="text" placeholder="Seu nome" autocomplete="name">
+          </div>
+          <div class="of-field">
+            <label class="of-label" for="of-tel">WhatsApp</label>
+            <input class="of-input" id="of-tel" type="tel" placeholder="(11) 9 0000-0000" autocomplete="tel">
+          </div>
+          <div class="of-field">
+            <label class="of-label" for="of-cep">CEP</label>
+            <input class="of-input" id="of-cep" type="text" placeholder="00000-000" maxlength="9" autocomplete="postal-code">
+          </div>
+          <div class="of-field of-field--full">
+            <label class="of-label" for="of-end">Endereço</label>
+            <input class="of-input" id="of-end" type="text" placeholder="Rua, número, complemento, bairro" autocomplete="street-address">
+          </div>
+        </div>
+        <p id="of-error" style="display:none;font-size:.58rem;color:#ef4444;margin:.2rem 0 .6rem;letter-spacing:.04em;">Preencha todos os campos para continuar.</p>
+        <p class="of-aroma-confirm">Aroma escolhido: <strong id="of-aroma-label">Ylang-Ylang</strong></p>
+        <button class="btn-main of-submit" id="of-submit-btn" onclick="submitOrder()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar pedido via WhatsApp
+        </button>
+        <p class="of-note">Você será redirecionado ao WhatsApp com os dados já preenchidos.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1000,13 +1047,64 @@ function selectAroma(key, btn) {
   // Update deodorant icon in kit
   var deoIcon = document.getElementById('deo-icon');
   if (deoIcon) deoIcon.textContent = aromaData[key].icon;
-  // Update WhatsApp links
-  var waBtn = document.getElementById('whatsapp-btn');
-  if (waBtn) waBtn.href = 'https://wa.me/5511964244456?text=' + aromaData[key].msg;
+  // Update aroma label in order form
+  var ofLabel = document.getElementById('of-aroma-label');
+  if (ofLabel) ofLabel.textContent = aromaData[key].label;
+  // Update WhatsApp links (legacy mobile CTA)
   var mobileCta = document.querySelector('.mobile-cta');
   if (mobileCta) mobileCta.href = 'https://wa.me/5511964244456?text=' + aromaData[key].msg;
 }
-// Aromas section: no CTA buttons, selection is done in the kit section above
+
+function submitOrder() {
+  var fields = [
+    { id: 'of-nome', label: 'Nome' },
+    { id: 'of-tel',  label: 'WhatsApp' },
+    { id: 'of-cep',  label: 'CEP' },
+    { id: 'of-end',  label: 'Endereço' }
+  ];
+  var valid = true;
+  fields.forEach(function(f) {
+    var el = document.getElementById(f.id);
+    if (!el.value.trim()) {
+      el.style.borderColor = '#ef4444';
+      el.setAttribute('placeholder', f.label + ' obrigatório');
+      valid = false;
+    } else {
+      el.style.borderColor = '';
+    }
+  });
+  if (!valid) {
+    var err = document.getElementById('of-error');
+    if (err) { err.style.display = 'block'; }
+    return;
+  }
+  var err = document.getElementById('of-error');
+  if (err) err.style.display = 'none';
+  var nome = document.getElementById('of-nome').value.trim();
+  var tel  = document.getElementById('of-tel').value.trim();
+  var cep  = document.getElementById('of-cep').value.trim();
+  var end  = document.getElementById('of-end').value.trim();
+  var activeTab = document.querySelector('.atab.active');
+  var key = activeTab ? activeTab.getAttribute('data-aroma') : 'ylang';
+  var aroma = aromaData[key].label;
+  var msg = 'Olá! Seguem os dados do meu pedido:%0A'
+    + '%E2%96%B8 Nome: ' + encodeURIComponent(nome) + '%0A'
+    + '%E2%96%B8 WhatsApp: ' + encodeURIComponent(tel) + '%0A'
+    + '%E2%96%B8 Aroma: ' + encodeURIComponent(aroma) + '%0A'
+    + '%E2%96%B8 CEP: ' + encodeURIComponent(cep) + '%0A'
+    + '%E2%96%B8 Endere%C3%A7o: ' + encodeURIComponent(end) + '%0A'
+    + '%E2%96%B8 Kit Atman Biolab %C2%B7 R%2491';
+  window.open('https://wa.me/5511964244456?text=' + msg, '_blank');
+}
+// Clear field error on input
+['of-nome','of-tel','of-cep','of-end'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('input', function() {
+    el.style.borderColor = '';
+    var err = document.getElementById('of-error');
+    if (err) err.style.display = 'none';
+  });
+});
 </script>
 
 </body>
